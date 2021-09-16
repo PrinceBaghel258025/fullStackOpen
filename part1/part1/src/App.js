@@ -1,74 +1,47 @@
+
+import React, { useState } from 'react';
+//Button Component******************************
+const Button = ({ onClick, text }) => (
+    <button onClick={onClick}>
+      {text}
+    </button>
+)
+//Line Component*******************************
+const Line = ({text, count}) => <p>{text} {count}</p>
+
+//App Component
 const App = () => {
-  const Header = (props) => {
-    return (
-      <div>
-        <h1>{props.course}</h1>
-      </div>
-    );
-  };
 
-  const Part = (props) => {
-    return (
-      <div>
-        <p>
-          {" "}
-          {props.name} {props.exercise}
-        </p>
-      </div>
-    );
-  };
-  const Content = (props) => {
+  //State of the App **************************
 
-    return (
-      <>
-        <Part name={props.parts[0].name} exercise={props.parts[0].exercises} />
-        <Part name={props.parts[1].name} exercise={props.parts[1].exercises} />
-        <Part name={props.parts[2].name} exercise={props.parts[2].exercises} />
-      </>
-    );
-  };
+  const [good, setGood] = useState(0);
+  const [neutral, setNeutral] = useState(0);
+  const [bad, setBad] = useState(0);
 
-  const Total = (props) => {
-    return (
-      <>
-        <p>
-          {props.text}{" "}
-          {props.total[0].exercises +
-            props.total[1].exercises +
-            props.total[2].exercises}
-        </p>
-      </>
-    );
-  };
-
-  const course = {
-    name: "Half Stack application developement",
-   parts: [
-    {
-      name: "Fundamentals of React",
-      exercises: 10
-    },
-    {
-      name: "Using props to pass data",
-      exercises: 7
-    },
-    {
-      name: "State of a component",
-      exercises: 14
-    }
-  ]
-}
+  //Event Hnadler functions***********************
+  const goodHandler = () => setGood(good + 1);
+  const neutralHandler = () => setNeutral(neutral + 1);
+  const badHandler = () => setBad(bad + 1);
 
   return (
     <div>
-      <Header course={course.name} />
-      <Content parts={course.parts} />
-      <Total
-        text={"Number of exercises"}
-        total={course.parts}
-      />
+      <h1>Give Feedback</h1>
+      <Button
+        onClick={goodHandler}
+        text="good" />
+      <Button
+        onClick={neutralHandler}
+        text="neutral" />
+      <Button
+        onClick={badHandler}
+        text="bad" />
+        <br />
+        <h1>statistics</h1>
+        <Line text="good" count={good} />
+        <Line text="neutral" count={neutral} />
+        <Line text="bad" count={bad} />
     </div>
   );
-};
+}
 
 export default App;
