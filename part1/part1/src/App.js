@@ -17,12 +17,42 @@ const App = () => {
   const [good, setGood] = useState(0);
   const [neutral, setNeutral] = useState(0);
   const [bad, setBad] = useState(0);
+  const [all, setAll] = useState(0);
+  const [avgSum, setAvgSum] = useState(0);
+  const [average, setAverage] = useState(0);
+  const [positive, setPositive] = useState(0);
 
   //Event Hnadler functions***********************
-  const goodHandler = () => setGood(good + 1);
-  const neutralHandler = () => setNeutral(neutral + 1);
-  const badHandler = () => setBad(bad + 1);
+  const goodHandler = () => {
+    setGood(good + 1);
+    setAll(all+1);
+    setAvgSum(avgSum+1);
+    const avg = avgSum/all;
+    setAverage(avg);
+    const annn = (good/all) * 100;
+    setPositive(annn)
+    
+  }
+  const neutralHandler = () => {
+    setNeutral(neutral + 1);
+    setAll(all+1);
+    setAvgSum(avgSum);
+    const avg = avgSum / all;
+    setAverage(avg);
+    const annn = (good / all) * 100;
+    setPositive(annn)
+  }
+  const badHandler = () => {
+    setBad(bad + 1);
+    setAll(all+1);
+    setAvgSum(avgSum-1);
+    const avg = avgSum / all;
+    setAverage(avg);
+    const annn = (good / all) * 100;
+    setPositive(annn)
+  }
 
+  
   return (
     <div>
       <h1>Give Feedback</h1>
@@ -40,6 +70,9 @@ const App = () => {
         <Line text="good" count={good} />
         <Line text="neutral" count={neutral} />
         <Line text="bad" count={bad} />
+        <Line text="all" count={all} />
+        <Line text="average" count={average} />
+        <Line text="positive" count={positive} />
     </div>
   );
 }
