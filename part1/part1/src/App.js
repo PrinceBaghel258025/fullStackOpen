@@ -8,32 +8,39 @@ const Button = ({ onClick, text }) => (
   </button>
 )
 //StatisticLine Component*******************************
-const StatisticLine = ({ text, count }) => <p>{text} {count}</p>
+// const StatisticLine = ({ text, count }) => <p>{text} {count}</p>
+
+
 
 //showing stastics using stats object**********
-const Statistics = (props) => {
+const Statistics = ({statsArray}) => {
+  const goodCount = statsArray[0].count;
+  const neutralCount = statsArray[1].count;
+  const badCount = statsArray[2].count;
 
-  const { goodText, goodCount, neutralText, neutralCount, badText, badCount, allText, allCount, averageText, averageCount, positiveText, positiveCount } = props.data;
+  const rows = statsArray.map( (el, index) => {
+    return <tr key={index}>
+      <td>{el.text}</td>
+      <td>{el.count}</td>
+    </tr>
 
+  })
 
   // Conditional Rendering*********************
   if (goodCount || badCount || neutralCount) {
     return (
       <>
-        <StatisticLine text={goodText} count={goodCount} />
-        <StatisticLine text={neutralText} count={neutralCount} />
-        <StatisticLine text={badText} count={badCount} />
-        <StatisticLine text={allText} count={allCount} />
-        <StatisticLine text={averageText} count={averageCount} />
-        <StatisticLine text={positiveText} count={positiveCount} />
+      <table>
+        <tbody>
+          {rows}
+        </tbody>
+      </table>
       </>
     )
   }
   return <>
     <p>No feedback given</p>
   </>
-
-
 }
 
 //App Component
@@ -79,22 +86,16 @@ const App = () => {
     setPositive(annn)
   }
 
-  const statsObject = {
-    goodText: "good",
-    goodCount: good,
-    neutralText: "neutral",
-    neutralCount: neutral,
-    badText: "bad",
-    badCount: bad,
-    allText: "all",
-    allCount: all,
-    averageText: "average",
-    averageCount: average,
-    positiveText: "positive",
-    positiveCount: positive
-  }
+  const statsArray = [
+    {text: "good", count: good},
+    { text: "neutral", count: neutral},
+    { text: "bad", count: bad},
+    { text: "all", count: all},
+    { text: "average", count: average},
+    { text: "positive", count: positive}
+  ]
 
-
+  
   return (
     <div>
       <h1>Give Feedback</h1>
@@ -110,7 +111,7 @@ const App = () => {
       <br />
       <h1>statistics</h1>
       <Statistics
-        data={statsObject} />
+        statsArray={statsArray} />
     </div>
   );
 }
