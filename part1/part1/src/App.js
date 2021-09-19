@@ -7,25 +7,35 @@ const Button = ({ onClick, text }) => (
     {text}
   </button>
 )
-//Line Component*******************************
-const Line = ({ text, count }) => <p>{text} {count}</p>
+//StatisticLine Component*******************************
+const StatisticLine = ({ text, count }) => <p>{text} {count}</p>
+
 //showing stastics using stats object**********
 const Statistics = (props) => {
 
   const { goodText, goodCount, neutralText, neutralCount, badText, badCount, allText, allCount, averageText, averageCount, positiveText, positiveCount } = props.data;
 
 
-  return (
-    <>
-      <Line text={goodText} count={goodCount} />
-      <Line text={neutralText} count={neutralCount} />
-      <Line text={badText} count={badCount} />
-      <Line text={allText} count={allCount} />
-      <Line text={averageText} count={averageCount} />
-      <Line text={positiveText} count={positiveCount} />
-    </>
-  )
+  // Conditional Rendering*********************
+  if (goodCount || badCount || neutralCount) {
+    return (
+      <>
+        <StatisticLine text={goodText} count={goodCount} />
+        <StatisticLine text={neutralText} count={neutralCount} />
+        <StatisticLine text={badText} count={badCount} />
+        <StatisticLine text={allText} count={allCount} />
+        <StatisticLine text={averageText} count={averageCount} />
+        <StatisticLine text={positiveText} count={positiveCount} />
+      </>
+    )
+  }
+  return <>
+    <p>No feedback given</p>
+  </>
+
+
 }
+
 //App Component
 const App = () => {
 
