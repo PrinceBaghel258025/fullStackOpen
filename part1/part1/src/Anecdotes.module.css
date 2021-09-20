@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@1,300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+.anecdotes{
+font-family: 'Roboto', sans-serif;
+font-weight: 300;
+height: max-content;
+width: 60%;
+color: rgb(33, 33, 204);
+background: linear-gradient(90deg, #ec9569 0%, #aed48a 100%);
+padding: 50px;
+border-radius: 50%;
+text-align: center;
+}
