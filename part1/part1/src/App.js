@@ -11,6 +11,28 @@ const Button = ({ click, text }) => {
   )
 }
 
+const Winner = (props) => {
+  const highestVotesCount = Math.max(...props.votes);
+  const indexOfWinner = props.votes.indexOf(highestVotesCount);
+
+  const getLength = (l) => {
+    const length = l;
+  }
+
+  const winner = <Anecdotes sendLength={getLength} rand={indexOfWinner} />;
+
+  if(highestVotesCount === 0){
+    return(
+      <p>No votes yet</p>
+    )
+  }
+  return(
+    <div>
+      {winner}
+      <p>has {highestVotesCount} Votes</p>
+    </div>
+  )
+}
 //App COmponent
 const App = () => {
  
@@ -46,6 +68,7 @@ return (
   <p>has {votes[selected]} votes</p>
   <Button text="vote" click={voteHandler} />
     <Button text="next anecdotes" click={quoteHandler} />
+    <Winner votes={votes} />
   </>
 )
 }
